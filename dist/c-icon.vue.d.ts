@@ -1,7 +1,6 @@
-import type { CIconKey } from './index';
 type Theme = 'rounded' | 'outlined' | 'sharp';
-interface CIconProps {
-    icon: CIconKey;
+export interface CIconProps {
+    icon: string;
     weight?: number;
     theme?: Theme;
     fill?: 0 | 1;
