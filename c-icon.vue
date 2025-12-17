@@ -8,11 +8,12 @@
 import { computed, ref, watch } from 'vue';
 import type { Ref } from 'vue';
 import { getSymbol } from '@hyrioo/vite-plugin-material-symbols-svg';
+import type { CIconKey } from './index';
 
 type Theme = 'rounded' | 'outlined' | 'sharp';
 
 interface CIconProps {
-  icon: string;
+  icon: CIconKey;
   weight?: number;
   theme?: Theme;
   fill?: 0 | 1;
