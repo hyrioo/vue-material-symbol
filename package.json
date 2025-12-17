@@ -18,11 +18,9 @@
   "engines": {
     "node": ">=18"
   },
-  "dependencies": {
-    "@hyrioo/vite-plugin-material-symbols-svg": "^0.1.0"
-  },
   "peerDependencies": {
-    "vue": "^3.3.0"
+    "vue": "^3.3.0",
+    "@hyrioo/vite-plugin-material-symbols-svg": "^0.1.0"
   },
   "scripts": {
     "build": "vite build && yarn build:types",
