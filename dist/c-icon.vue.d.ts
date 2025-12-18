@@ -1,6 +1,7 @@
+import type { IconKey } from '@hyrioo/vite-plugin-material-symbols-svg';
 type Theme = 'rounded' | 'outlined' | 'sharp';
 export interface CIconProps {
-    icon: string;
+    icon: IconKey;
     weight?: number;
     theme?: Theme;
     fill?: 0 | 1;
