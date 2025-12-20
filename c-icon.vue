@@ -9,6 +9,7 @@ import { computed, ref, watch } from 'vue';
 import type { Ref } from 'vue';
 import { getSymbol } from '@hyrioo/vite-plugin-material-symbols-svg/consumer';
 import type { IconKey, Theme, Fill, Weight } from '@hyrioo/vite-plugin-material-symbols-svg/consumer';
+import { symbolDefaultConfig } from './index';
 
 export interface CIconProps {
   icon: IconKey;
@@ -21,12 +22,12 @@ export interface CIconProps {
 }
 
 const props = withDefaults(defineProps<CIconProps>(), {
+  weight: () => symbolDefaultConfig.weight,
+  theme: () => symbolDefaultConfig.theme,
+  fill: () => symbolDefaultConfig.fill,
   width: undefined,
   height: undefined,
   size: 24,
-  theme: 'rounded',
-  fill: false,
-  weight: 200,
 });
 
 const path: Ref<string> = ref('');
@@ -42,13 +43,13 @@ function opticalSizeFor(rendered: number): 20 | 24 | 40 | 48 {
 }
 
 function updateIcon() {
-  const rendered = props.size ?? 24;
+  const rendered = props.size;
   const size = opticalSizeFor(rendered);
   const svg = getSymbol({
     icon: String(props.icon),
-    theme: props.theme ?? 'rounded',
+    theme: props.theme,
     fill: props.fill ? 1 : 0,
-    weight: Number(props.weight ?? 200),
+    weight: Number(props.weight),
     size: Number(size),
   });
   if (svg) {
