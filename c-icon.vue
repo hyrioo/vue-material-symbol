@@ -8,15 +8,13 @@
 import { computed, ref, watch } from 'vue';
 import type { Ref } from 'vue';
 import { getSymbol } from '@hyrioo/vite-plugin-material-symbols-svg/consumer';
-import type { IconKey } from '@hyrioo/vite-plugin-material-symbols-svg/consumer';
-
-type Theme = 'rounded' | 'outlined' | 'sharp';
+import type { IconKey, Theme, Fill, Weight } from '@hyrioo/vite-plugin-material-symbols-svg/consumer';
 
 export interface CIconProps {
   icon: IconKey;
-  weight?: number;
+  weight?: Weight;
   theme?: Theme;
-  fill?: 0 | 1;
+  fill?: Fill;
   width?: number;
   height?: number;
   size?: number; // rendered size; used to decide optical size bucket
@@ -27,7 +25,7 @@ const props = withDefaults(defineProps<CIconProps>(), {
   height: undefined,
   size: 24,
   theme: 'rounded',
-  fill: 0,
+  fill: false,
   weight: 200,
 });
 
@@ -49,7 +47,7 @@ function updateIcon() {
   const svg = getSymbol({
     icon: String(props.icon),
     theme: props.theme ?? 'rounded',
-    fill: (props.fill ?? 0) as 0 | 1,
+    fill: props.fill ? 1 : 0,
     weight: Number(props.weight ?? 200),
     size: Number(size),
   });
