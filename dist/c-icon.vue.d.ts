@@ -1,4 +1,4 @@
-import type { IconKey } from '@hyrioo/vite-plugin-material-symbols-svg';
+import type { IconKey } from '@hyrioo/vite-plugin-material-symbols-svg/consumer';
 type Theme = 'rounded' | 'outlined' | 'sharp';
 export interface CIconProps {
     icon: IconKey;

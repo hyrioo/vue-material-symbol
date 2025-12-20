@@ -7,8 +7,8 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
 import type { Ref } from 'vue';
-import { getSymbol } from '@hyrioo/vite-plugin-material-symbols-svg';
-import type { IconKey } from '@hyrioo/vite-plugin-material-symbols-svg';
+import { getSymbol } from '@hyrioo/vite-plugin-material-symbols-svg/consumer';
+import type { IconKey } from '@hyrioo/vite-plugin-material-symbols-svg/consumer';
 
 type Theme = 'rounded' | 'outlined' | 'sharp';
 
@@ -56,9 +56,13 @@ function updateIcon() {
   if (svg) {
     path.value = svg.d;
     viewBox.value = svg.viewBox;
-  } else if (import.meta.env?.DEV) {
-    // eslint-disable-next-line no-console
-    console.warn(`[CIcon] Icon not found: ${String(props.icon)} (size ${size})`);
+  } else {
+    const IS_DEV = (typeof process !== 'undefined' && process.env.NODE_ENV !== 'production') || 
+                   (typeof (import.meta as any).env !== 'undefined' && (import.meta as any).env.DEV);
+    if (IS_DEV) {
+      // eslint-disable-next-line no-console
+      console.warn(`[CIcon] Icon not found: ${String(props.icon)} (size ${size})`);
+    }
   }
 }
 
