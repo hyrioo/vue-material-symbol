@@ -12,7 +12,7 @@ export default defineConfig({
     },
     rollupOptions: {
       // Do not bundle Vue or the plugin package
-      external: ['vue', '@hyrioo/vite-plugin-material-symbols-svg'],
+      external: ['vue', /^@hyrioo\/vite-plugin-material-symbols-svg(\/.*)?$/],
       output: {
         globals: {
           vue: 'Vue',
