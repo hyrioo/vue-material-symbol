@@ -1,4 +1,4 @@
-import { defineComponent as p, ref as m, computed as b, watch as w, createElementBlock as v, openBlock as z, mergeProps as _, createElementVNode as y, readonly as S } from "vue";
+import { defineComponent as p, ref as g, computed as b, watch as w, createElementBlock as v, openBlock as z, mergeProps as _, createElementVNode as y, readonly as S } from "vue";
 import { getSymbol as B } from "@hyrioo/vite-plugin-material-symbols-svg/consumer";
 const x = ["viewBox"], N = ["d"], D = /* @__PURE__ */ p({
   __name: "h-symbol",
@@ -11,7 +11,7 @@ const x = ["viewBox"], N = ["d"], D = /* @__PURE__ */ p({
     opticalSize: { default: null }
   },
   setup(r) {
-    const e = r, a = m(""), u = m("0 0 24 24"), g = b(() => ({
+    const e = r, u = g(""), a = g("0 0 24 24"), m = b(() => ({
       width: e.size,
       height: e.size
     }));
@@ -23,23 +23,23 @@ const x = ["viewBox"], N = ["d"], D = /* @__PURE__ */ p({
         weight: Number(e.weight)
       });
       if (o) {
-        const i = e.opticalSize || e.size, f = Object.keys(o).map(Number).sort((l, n) => l - n);
-        let h = i;
-        !o[i] && f.length > 0 && (h = f.reduce((l, n) => Math.abs(n - i) < Math.abs(l - i) ? n : l));
+        const l = e.opticalSize || e.size, f = Object.keys(o).map(Number).sort((i, n) => i - n);
+        let h = l;
+        !o[l] && f.length > 0 && (h = f.reduce((i, n) => Math.abs(n - l) < Math.abs(i - l) ? n : i));
         const c = o[h];
         if (c) {
-          a.value = c.d, u.value = c.viewBox;
+          u.value = c.d, a.value = c.viewBox;
           return;
         }
       }
-      a.value = "", s.debug && console.warn(`[h-symbol] Icon not found: ${String(e.icon)} (size ${e.size})`);
+      u.value = "", s.debug && console.warn(`[h-symbol] Icon not found: ${String(e.icon)} (size ${e.size})`);
     }
     return w(
       () => [e.icon, e.theme, e.filled, e.weight, e.size],
       () => d()
-    ), d(), (o, i) => (z(), v("svg", _({ viewBox: u.value }, g.value), [
+    ), d(), (o, l) => (z(), v("svg", _({ viewBox: a.value }, m.value), [
       y("path", {
-        d: a.value,
+        d: u.value,
         class: "fill-current"
       }, null, 8, N)
     ], 16, x));
@@ -51,7 +51,8 @@ let t = {
   filled: !1,
   debug: typeof process < "u" && process.env.NODE_ENV !== "production"
 };
-function C(r) {
+console.log("h-symbol debug:", t.debug);
+function P(r) {
   t = {
     ...t,
     ...r
@@ -73,7 +74,7 @@ const s = S({
 });
 export {
   D as HSymbol,
-  C as configureSymbolDefaults,
-  s as symbolDefaultConfig
+  P as configureSymbolDefaultProps,
+  s as symbolDefaultProps
 };
 //# sourceMappingURL=index.js.map

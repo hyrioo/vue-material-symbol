@@ -9,7 +9,7 @@ import type { Ref } from 'vue';
 import { computed, ref, watch } from 'vue';
 import type { OpticalSize, Filled, IconKey, Theme, Weight } from '@hyrioo/vite-plugin-material-symbols-svg/consumer';
 import { getSymbol } from '@hyrioo/vite-plugin-material-symbols-svg/consumer';
-import { symbolDefaultConfig } from './index';
+import { symbolDefaultProps } from './index';
 
 export interface HSymbolProps {
     icon: IconKey;
@@ -21,9 +21,9 @@ export interface HSymbolProps {
 }
 
 const props = withDefaults(defineProps<HSymbolProps>(), {
-    weight: () => symbolDefaultConfig.weight,
-    theme: () => symbolDefaultConfig.theme,
-    filled: () => symbolDefaultConfig.filled,
+    weight: () => symbolDefaultProps.weight,
+    theme: () => symbolDefaultProps.theme,
+    filled: () => symbolDefaultProps.filled,
     size: 24,
     opticalSize: null,
 });
@@ -65,7 +65,7 @@ function updateIcon() {
 
     path.value = '';
 
-    if (symbolDefaultConfig.debug) {
+    if (symbolDefaultProps.debug) {
         // eslint-disable-next-line no-console
         console.warn(`[h-symbol] Icon not found: ${String(props.icon)} (size ${props.size})`);
     }
