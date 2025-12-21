@@ -1,6 +1,7 @@
-import { defineComponent as p, ref as g, computed as b, watch as w, createElementBlock as v, openBlock as z, mergeProps as _, createElementVNode as y, readonly as S } from "vue";
-import { getSymbol as B } from "@hyrioo/vite-plugin-material-symbols-svg/consumer";
-const x = ["viewBox"], N = ["d"], D = /* @__PURE__ */ p({
+import { defineComponent as p, ref as m, computed as b, watch as w, createElementBlock as v, openBlock as z, mergeProps as _, createElementVNode as y, readonly as S } from "vue";
+import { isProduction as B } from "@hyrioo/vite-plugin-material-symbols-svg";
+import { getSymbol as x } from "@hyrioo/vite-plugin-material-symbols-svg/consumer";
+const P = ["viewBox"], k = ["d"], I = /* @__PURE__ */ p({
   __name: "h-symbol",
   props: {
     icon: {},
@@ -11,24 +12,24 @@ const x = ["viewBox"], N = ["d"], D = /* @__PURE__ */ p({
     opticalSize: { default: null }
   },
   setup(r) {
-    const e = r, u = g(""), a = g("0 0 24 24"), m = b(() => ({
+    const e = r, u = m(""), c = m("0 0 24 24"), g = b(() => ({
       width: e.size,
       height: e.size
     }));
     function d() {
-      const o = B({
+      const o = x({
         icon: String(e.icon),
         theme: e.theme,
         filled: e.filled ? 1 : 0,
         weight: Number(e.weight)
       });
       if (o) {
-        const l = e.opticalSize || e.size, f = Object.keys(o).map(Number).sort((i, n) => i - n);
-        let h = l;
-        !o[l] && f.length > 0 && (h = f.reduce((i, n) => Math.abs(n - l) < Math.abs(i - l) ? n : i));
-        const c = o[h];
-        if (c) {
-          u.value = c.d, a.value = c.viewBox;
+        const i = e.opticalSize || e.size, f = Object.keys(o).map(Number).sort((l, n) => l - n);
+        let h = i;
+        !o[i] && f.length > 0 && (h = f.reduce((l, n) => Math.abs(n - i) < Math.abs(l - i) ? n : l));
+        const a = o[h];
+        if (a) {
+          u.value = a.d, c.value = a.viewBox;
           return;
         }
       }
@@ -37,22 +38,22 @@ const x = ["viewBox"], N = ["d"], D = /* @__PURE__ */ p({
     return w(
       () => [e.icon, e.theme, e.filled, e.weight, e.size],
       () => d()
-    ), d(), (o, l) => (z(), v("svg", _({ viewBox: a.value }, m.value), [
+    ), d(), (o, i) => (z(), v("svg", _({ viewBox: c.value }, g.value), [
       y("path", {
         d: u.value,
         class: "fill-current"
-      }, null, 8, N)
-    ], 16, x));
+      }, null, 8, k)
+    ], 16, P));
   }
 });
 let t = {
   weight: 400,
   theme: "rounded",
   filled: !1,
-  debug: typeof process < "u" && process.env.NODE_ENV !== "production"
+  debug: B
 };
 console.log("h-symbol debug:", t.debug);
-function P(r) {
+function M(r) {
   t = {
     ...t,
     ...r
@@ -73,8 +74,8 @@ const s = S({
   }
 });
 export {
-  D as HSymbol,
-  P as configureSymbolDefaultProps,
+  I as HSymbol,
+  M as configureSymbolDefaultProps,
   s as symbolDefaultProps
 };
 //# sourceMappingURL=index.js.map

@@ -49,13 +49,13 @@ function updateIcon() {
         const sizes = Object.keys(available).map(Number).sort((a, b) => a - b);
 
         let bestSize = targetSize;
-        if (!available[targetSize] && sizes.length > 0) {
+        if (!(available as any)[targetSize] && sizes.length > 0) {
             bestSize = sizes.reduce((prev, curr) => {
                 return Math.abs(curr - targetSize) < Math.abs(prev - targetSize) ? curr : prev;
             });
         }
 
-        const svg = available[bestSize];
+        const svg = (available as any)[bestSize];
         if (svg) {
             path.value = svg.d;
             viewBox.value = svg.viewBox;

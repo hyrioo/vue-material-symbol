@@ -1,5 +1,6 @@
 import { readonly } from 'vue';
 import type { Filled, Theme, Weight } from '@hyrioo/vite-plugin-material-symbols-svg/consumer';
+import { isProduction } from '@hyrioo/vite-plugin-material-symbols-svg';
 
 export { default as HSymbol } from './h-symbol.vue';
 export type { HSymbolProps } from './h-symbol.vue';
@@ -15,7 +16,7 @@ let _defaults: HSymbolDefaultProps = {
     weight: 400,
     theme: 'rounded',
     filled: false,
-    debug: (typeof process !== 'undefined' && process.env.NODE_ENV !== 'production'),
+    debug: isProduction,
 };
 console.log('h-symbol debug:', _defaults.debug);
 
