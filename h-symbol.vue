@@ -36,30 +36,38 @@ const attrs = computed(() => ({
     height: props.size,
 }));
 
-function opticalSizeFor(rendered: number): 20 | 24 | 40 | 48 {
-    return rendered < 22 ? 20 : rendered < 32 ? 24 : rendered < 44 ? 40 : 48;
-}
-
 function updateIcon() {
-    const rendered = props.size;
-    const size = opticalSizeFor(rendered);
-    const svg = getSymbol({
+    const available = getSymbol({
         icon: String(props.icon),
         theme: props.theme,
         filled: props.filled ? 1 : 0,
         weight: Number(props.weight),
-        size: Number(size),
     });
-    if (svg) {
-        path.value = svg.d;
-        viewBox.value = svg.viewBox;
-    } else {
-        path.value = '';
 
-        if (symbolDefaultConfig.debug) {
-            // eslint-disable-next-line no-console
-            console.warn(`[h-symbol] Icon not found: ${String(props.icon)} (size ${size})`);
+    if (available) {
+        const targetSize = props.opticalSize || props.size;
+        const sizes = Object.keys(available).map(Number).sort((a, b) => a - b);
+
+        let bestSize = targetSize;
+        if (!available[targetSize] && sizes.length > 0) {
+            bestSize = sizes.reduce((prev, curr) => {
+                return Math.abs(curr - targetSize) < Math.abs(prev - targetSize) ? curr : prev;
+            });
         }
+
+        const svg = available[bestSize];
+        if (svg) {
+            path.value = svg.d;
+            viewBox.value = svg.viewBox;
+            return;
+        }
+    }
+
+    path.value = '';
+
+    if (symbolDefaultConfig.debug) {
+        // eslint-disable-next-line no-console
+        console.warn(`[h-symbol] Icon not found: ${String(props.icon)} (size ${props.size})`);
     }
 }
 
