@@ -1,70 +1,73 @@
-import { defineComponent as d, ref as u, computed as m, watch as p, createElementBlock as g, openBlock as _, mergeProps as w, createElementVNode as v, readonly as z } from "vue";
-import { getSymbol as y } from "@hyrioo/vite-plugin-material-symbols-svg/consumer";
-const B = {}, S = ["viewBox"], x = ["d"], D = /* @__PURE__ */ d({
-  __name: "c-icon",
+import { defineComponent as h, ref as d, computed as m, watch as g, createElementBlock as p, openBlock as w, mergeProps as v, createElementVNode as b, readonly as _ } from "vue";
+import { getSymbol as z } from "@hyrioo/vite-plugin-material-symbols-svg/consumer";
+const y = ["viewBox"], B = ["d"], N = /* @__PURE__ */ h({
+  __name: "h-symbol",
   props: {
     icon: {},
-    weight: { default: () => c.weight },
-    theme: { default: () => c.theme },
-    fill: { type: Boolean, default: () => c.fill },
-    width: { default: void 0 },
-    height: { default: void 0 },
-    size: { default: 24 }
+    weight: { default: () => i.weight },
+    theme: { default: () => i.theme },
+    filled: { type: Boolean, default: () => i.filled },
+    size: { default: 24 },
+    opticalSize: { default: null }
   },
-  setup(i) {
-    const e = i, s = u(""), r = u("0 0 24 24"), a = m(() => ({
-      width: e.width ?? e.size,
-      height: e.height ?? e.size
+  setup(n) {
+    const e = n, l = d(""), c = d("0 0 24 24"), f = m(() => ({
+      width: e.size,
+      height: e.size
     }));
-    function h(t) {
+    function a(t) {
       return t < 22 ? 20 : t < 32 ? 24 : t < 44 ? 40 : 48;
     }
-    function f() {
-      const t = e.size, n = h(t), l = y({
+    function r() {
+      const t = e.size, s = a(t), u = z({
         icon: String(e.icon),
         theme: e.theme,
-        fill: e.fill ? 1 : 0,
+        filled: e.filled ? 1 : 0,
         weight: Number(e.weight),
-        size: Number(n)
+        size: Number(s)
       });
-      l ? (s.value = l.d, r.value = l.viewBox) : (typeof process < "u" && process.env.NODE_ENV !== "production" || typeof B < "u" && !1) && console.warn(`[CIcon] Icon not found: ${String(e.icon)} (size ${n})`);
+      u ? (l.value = u.d, c.value = u.viewBox) : (l.value = "", i.debug && console.warn(`[h-symbol] Icon not found: ${String(e.icon)} (size ${s})`));
     }
-    return p(
-      () => [e.icon, e.theme, e.fill, e.weight, e.size],
-      () => f()
-    ), f(), (t, n) => (_(), g("svg", w({ viewBox: r.value }, a.value), [
-      v("path", {
-        class: "fill-current",
-        d: s.value
-      }, null, 8, x)
-    ], 16, S));
+    return g(
+      () => [e.icon, e.theme, e.filled, e.weight, e.size],
+      () => r()
+    ), r(), (t, s) => (w(), p("svg", v({ viewBox: c.value }, f.value), [
+      b("path", {
+        d: l.value,
+        class: "fill-current"
+      }, null, 8, B)
+    ], 16, y));
   }
 });
 let o = {
   weight: 400,
   theme: "rounded",
-  fill: !1
+  filled: !1,
+  debug: typeof process < "u" && process.env.NODE_ENV !== "production"
 };
-function N(i) {
+function E(n) {
   o = {
     ...o,
-    ...i
+    ...n
   };
 }
-const c = z({
+const i = _({
   get weight() {
     return o.weight;
   },
   get theme() {
     return o.theme;
   },
-  get fill() {
-    return o.fill;
+  get filled() {
+    return o.filled;
+  },
+  get debug() {
+    return o.debug;
   }
 });
 export {
-  D as CIcon,
-  N as configureSymbolDefaults,
-  c as symbolDefaultConfig
+  N as HSymbol,
+  E as configureSymbolDefaults,
+  i as symbolDefaultConfig
 };
 //# sourceMappingURL=index.js.map

@@ -1,23 +1,25 @@
 import { readonly } from 'vue';
-import type { Fill, Theme, Weight } from '@hyrioo/vite-plugin-material-symbols-svg/consumer';
+import type { Filled, Theme, Weight } from '@hyrioo/vite-plugin-material-symbols-svg/consumer';
 
-export { default as CIcon } from './c-icon.vue';
-export type { CIconProps } from './c-icon.vue';
+export { default as HSymbol } from './h-symbol.vue';
+export type { HSymbolProps } from './h-symbol.vue';
 
-export interface CIconConfig {
+export interface HSymbolConfig {
     weight: Weight;
     theme: Theme;
-    fill: Fill;
+    filled: Filled;
+    debug: boolean;
 }
 
-let _defaults: CIconConfig = {
+let _defaults: HSymbolConfig = {
     weight: 400,
     theme: 'rounded',
-    fill: false,
+    filled: false,
+    debug: (typeof process !== 'undefined' && process.env.NODE_ENV !== 'production'),
 };
 
 export function configureSymbolDefaults(
-    overrides: Partial<CIconConfig>,
+    overrides: Partial<HSymbolConfig>,
 ) {
     _defaults = {
         ..._defaults,
@@ -32,7 +34,10 @@ export const symbolDefaultConfig = readonly({
     get theme() {
         return _defaults.theme;
     },
-    get fill() {
-        return _defaults.fill;
+    get filled() {
+        return _defaults.filled;
+    },
+    get debug() {
+        return _defaults.debug;
     },
 });

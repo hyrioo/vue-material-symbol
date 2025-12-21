@@ -1,14 +1,16 @@
-import type { Fill, Theme, Weight } from '@hyrioo/vite-plugin-material-symbols-svg/consumer';
-export { default as CIcon } from './c-icon.vue';
-export type { CIconProps } from './c-icon.vue';
-export interface CIconConfig {
+import type { Filled, Theme, Weight } from '@hyrioo/vite-plugin-material-symbols-svg/consumer';
+export { default as HSymbol } from './h-symbol.vue';
+export type { HSymbolProps } from './h-symbol.vue';
+export interface HSymbolConfig {
     weight: Weight;
     theme: Theme;
-    fill: Fill;
+    filled: Filled;
+    debug: boolean;
 }
-export declare function configureSymbolDefaults(overrides: Partial<CIconConfig>): void;
+export declare function configureSymbolDefaults(overrides: Partial<HSymbolConfig>): void;
 export declare const symbolDefaultConfig: {
     readonly weight: Weight;
     readonly theme: Theme;
-    readonly fill: boolean;
+    readonly filled: boolean;
+    readonly debug: boolean;
 };
