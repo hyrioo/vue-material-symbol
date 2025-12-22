@@ -1,7 +1,7 @@
-import { defineComponent as p, ref as m, computed as b, watch as w, createElementBlock as v, openBlock as z, mergeProps as _, createElementVNode as y, readonly as S } from "vue";
-import { isProduction as B } from "@hyrioo/vite-plugin-material-symbols-svg";
-import { getSymbol as x } from "@hyrioo/vite-plugin-material-symbols-svg/consumer";
-const P = ["viewBox"], k = ["d"], I = /* @__PURE__ */ p({
+import { defineComponent as b, ref as g, computed as p, watch as w, createElementBlock as v, openBlock as z, mergeProps as y, readonly as S } from "vue";
+import { isProduction as _ } from "@hyrioo/vite-plugin-material-symbols-svg";
+import { getSymbol as B } from "@hyrioo/vite-plugin-material-symbols-svg/consumer";
+const x = ["viewBox", "innerHTML"], H = /* @__PURE__ */ b({
   __name: "h-symbol",
   props: {
     icon: {},
@@ -12,24 +12,24 @@ const P = ["viewBox"], k = ["d"], I = /* @__PURE__ */ p({
     opticalSize: { default: null }
   },
   setup(r) {
-    const e = r, u = m(""), c = m("0 0 24 24"), g = b(() => ({
+    const e = r, u = g(""), a = g("0 0 24 24"), h = p(() => ({
       width: e.size,
       height: e.size
     }));
     function d() {
-      const o = x({
+      const o = B({
         icon: String(e.icon),
         theme: e.theme,
         filled: e.filled ? 1 : 0,
         weight: Number(e.weight)
       });
       if (o) {
-        const i = e.opticalSize || e.size, f = Object.keys(o).map(Number).sort((l, n) => l - n);
-        let h = i;
-        !o[i] && f.length > 0 && (h = f.reduce((l, n) => Math.abs(n - i) < Math.abs(l - i) ? n : l));
-        const a = o[h];
-        if (a) {
-          u.value = a.d, c.value = a.viewBox;
+        const i = e.opticalSize || e.size, f = Object.keys(o).map(Number).sort((n, l) => n - l);
+        let m = i;
+        !o[i] && f.length > 0 && (m = f.reduce((n, l) => Math.abs(l - i) < Math.abs(n - i) ? l : n));
+        const c = o[m];
+        if (c) {
+          u.value = c.content, a.value = c.viewBox;
           return;
         }
       }
@@ -38,22 +38,17 @@ const P = ["viewBox"], k = ["d"], I = /* @__PURE__ */ p({
     return w(
       () => [e.icon, e.theme, e.filled, e.weight, e.size],
       () => d()
-    ), d(), (o, i) => (z(), v("svg", _({ viewBox: c.value }, g.value), [
-      y("path", {
-        d: u.value,
-        class: "fill-current"
-      }, null, 8, k)
-    ], 16, P));
+    ), d(), (o, i) => (z(), v("svg", y({ viewBox: a.value }, h.value, { innerHTML: u.value }), null, 16, x));
   }
 });
 let t = {
   weight: 400,
   theme: "rounded",
   filled: !1,
-  debug: B
+  debug: _
 };
 console.log("h-symbol debug:", t.debug);
-function M(r) {
+function D(r) {
   t = {
     ...t,
     ...r
@@ -74,8 +69,8 @@ const s = S({
   }
 });
 export {
-  I as HSymbol,
-  M as configureSymbolDefaultProps,
+  H as HSymbol,
+  D as configureSymbolDefaultProps,
   s as symbolDefaultProps
 };
 //# sourceMappingURL=index.js.map

@@ -1,7 +1,5 @@
 <template>
-    <svg :viewBox="viewBox" v-bind="attrs">
-        <path :d="path" class="fill-current" />
-    </svg>
+    <svg :viewBox="viewBox" v-bind="attrs" v-html="content" />
 </template>
 
 <script lang="ts" setup>
@@ -28,7 +26,7 @@ const props = withDefaults(defineProps<HSymbolProps>(), {
     opticalSize: null,
 });
 
-const path: Ref<string> = ref('');
+const content: Ref<string> = ref('');
 const viewBox: Ref<string> = ref('0 0 24 24');
 
 const attrs = computed(() => ({
@@ -57,13 +55,13 @@ function updateIcon() {
 
         const svg = (available as any)[bestSize];
         if (svg) {
-            path.value = svg.d;
+            content.value = svg.content;
             viewBox.value = svg.viewBox;
             return;
         }
     }
 
-    path.value = '';
+    content.value = '';
 
     if (symbolDefaultProps.debug) {
         // eslint-disable-next-line no-console
