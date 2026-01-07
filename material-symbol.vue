@@ -11,7 +11,7 @@ import { symbolDefaultProps } from './index';
 
 export type SvgColor = string | 'current' | 'keep' | null;
 
-export interface HSymbolProps {
+export interface MaterialSymbolProps {
     icon: IconKey;
     weight?: Weight;
     theme?: Theme;
@@ -22,7 +22,7 @@ export interface HSymbolProps {
     opticalSize?: OpticalSize | null;
 }
 
-const props = withDefaults(defineProps<HSymbolProps>(), {
+const props = withDefaults(defineProps<MaterialSymbolProps>(), {
     weight: () => symbolDefaultProps.weight,
     theme: () => symbolDefaultProps.theme,
     filled: () => symbolDefaultProps.filled,
@@ -58,7 +58,7 @@ const biggestSize = computed(() => {
     return props.size;
 });
 
-function applyColors(content: string, fills: HSymbolProps['fills'], strokes: HSymbolProps['strokes']): string {
+function applyColors(content: string, fills: MaterialSymbolProps['fills'], strokes: MaterialSymbolProps['strokes']): string {
     if (!content || typeof DOMParser === 'undefined') return content;
 
     const parser = new DOMParser();
@@ -131,7 +131,7 @@ function updateIcon() {
 
     if (symbolDefaultProps.debug) {
         // eslint-disable-next-line no-console
-        console.warn(`[h-symbol] Icon not found: ${String(props.icon)} (size ${props.size})`);
+        console.warn(`[material-symbol] Icon not found: ${String(props.icon)} (size ${props.size})`);
     }
 }
 
